@@ -1,0 +1,75 @@
+<div class="container">
+  <div class="row mb-3">
+    <div class="col-md-6 col-sm-12">
+      <input
+        class="form-control"
+        [(ngModel)]="searchTerm"
+        placeholder="Search by name or surname"
+      />
+    </div>
+    <div class="col-md-6 col-sm-12">
+      <select class="form-control" [(ngModel)]="positionFilter">
+        <option value="">All Positions</option>
+        <option *ngFor="let jobTitle of jobTitles" [value]="jobTitle">
+          {{ jobTitle }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>
+            First Name
+            <button
+              class="btn btn-primary btn-sm"
+              (click)="sortBy('firstName')"
+            >
+              Sort
+            </button>
+          </th>
+          <th>
+            Last Name
+            <button class="btn btn-primary btn-sm" (click)="sortBy('lastName')">
+              Sort
+            </button>
+          </th>
+          <th>
+            Date of Birth
+            <button
+              class="btn btn-primary btn-sm"
+              (click)="sortBy('dateOfBirth')"
+            >
+              Sort
+            </button>
+          </th>
+          <th>
+            Position
+            <button class="btn btn-primary btn-sm" (click)="sortBy('jobTitle')">
+              Sort
+            </button>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let employee of search()
+              | paginate : { itemsPerPage: 10, currentPage: page }
+          "
+        >
+          <td>{{ employee.firstName }}</td>
+          <td>{{ employee.lastName }}</td>
+          <td>{{ employee.dateOfBirth | date : "yyyy-MM-dd" }}</td>
+          <td>{{ employee.jobTitle }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+  </div>
+</div>

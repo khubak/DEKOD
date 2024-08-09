@@ -1,0 +1,31 @@
+<div class="d-flex justify-content-center align-items-center vh-100">
+  <form
+    class="form-group p-4 bg-light rounded shadow"
+    [formGroup]="employeeForm"
+    (ngSubmit)="onSubmit()"
+    style="max-width: 500px; width: 100%"
+  >
+    <div class="mb-3">
+      <label for="firstName" class="form-label">First Name:</label>
+      <input id="firstName" class="form-control" formControlName="firstName" />
+    </div>
+    <div class="mb-3">
+      <label for="lastName" class="form-label">Last Name:</label>
+      <input id="lastName" class="form-control" formControlName="lastName" />
+    </div>
+    <div class="mb-3">
+      <label for="dateOfBirth" class="form-label">Date of Birth:</label>
+      <input
+        id="dateOfBirth"
+        class="form-control"
+        formControlName="dateOfBirth"
+        type="date"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="jobTitle" class="form-label">Job Title:</label>
+      <input id="jobTitle" class="form-control" formControlName="jobTitle" />
+    </div>
+    <button class="btn btn-primary w-100" type="submit">Save</button>
+  </form>
+</div>
